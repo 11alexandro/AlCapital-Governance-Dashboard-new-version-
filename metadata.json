@@ -1,0 +1,6 @@
+{
+  "name": "AICapital Governance",
+  "description": "Premium dark-mode Web3 Governance Dashboard styled for DAOs and institutional Web3 projects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
