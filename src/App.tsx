@@ -14,16 +14,16 @@ import AnalyticsPanel from "./components/AnalyticsPanel";
 import LiveActivityFeed from "./components/LiveActivityFeed";
 import FooterStatusBar from "./components/FooterStatusBar";
 import { Proposal, Activity, ChartDataPoint } from "./types";
-import { MOCK_WALLETS } from "./data/constants";
+import { MOCK_WALLETS, INITIAL_PROPOSALS, INITIAL_ACTIVITIES, CHART_HISTORY_DATA } from "./data/constants";
 import { Coins, Layers, ArrowUpRight, TrendingUp, Search, Users, Shield, Plus, ArrowRight, Wallet, CheckCircle2, X } from "lucide-react";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const [selectedId, setSelectedId] = useState<string>("1");
   const [currentWallet, setCurrentWallet] = useState<string>(MOCK_WALLETS[0]);
-  const [proposals, setProposals] = useState<Proposal[]>([]);
-  const [activities, setActivities] = useState<Activity[]>([]);
-  const [chartHistory, setChartHistory] = useState<ChartDataPoint[]>([]);
+  const [proposals, setProposals] = useState<Proposal[]>(INITIAL_PROPOSALS);
+  const [activities, setActivities] = useState<Activity[]>(INITIAL_ACTIVITIES);
+  const [chartHistory, setChartHistory] = useState<ChartDataPoint[]>(CHART_HISTORY_DATA);
   
   // Real-time fluctuating parameters
   const [blockNumber, setBlockNumber] = useState<number>(19234567);
