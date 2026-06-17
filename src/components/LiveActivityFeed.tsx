@@ -59,7 +59,7 @@ export default function LiveActivityFeed({ activities }: LiveActivityFeedProps) 
   };
 
   return (
-    <div className="bg-[#0d1527] border border-[#1e293b]/70 rounded-2xl p-5 shadow-sm min-h-[360px] flex flex-col h-full relative overflow-hidden">
+    <div className="bg-[#0d1527] border border-[#1e293b]/70 rounded-2xl p-5 shadow-sm flex flex-col h-fit relative overflow-hidden">
       {/* Header section */}
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-bold text-white tracking-tight flex items-center gap-2 select-none">

@@ -663,7 +663,7 @@ async function startServer() {
   }
 
   server.listen(PORT, "0.0.0.0", () => {
-    console.log(`🚀 ALCapital server boot on port ${PORT}`);
+    console.log(`🚀 AICapital server boot on port ${PORT}`);
   });
 }
 

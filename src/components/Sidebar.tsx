@@ -16,16 +16,19 @@ import {
   ExternalLink,
   Twitter,
   Github,
-  Compass
+  Compass,
+  X
 } from "lucide-react";
 
 interface SidebarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   learnMoreUrl?: string;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
+export default function Sidebar({ activeTab, setActiveTab, isOpen = false, onClose }: SidebarProps) {
   const menuItems = [
     { name: "Dashboard", id: "dashboard", icon: LayoutDashboard },
     { name: "Proposals", id: "proposals", icon: FileText },
@@ -38,44 +41,66 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   ];
 
   return (
-    <aside className="w-64 flex flex-col justify-between border-r border-[#1e293b]/50 bg-[#070b19] h-screen fixed left-0 top-0 z-40 p-5 font-sans overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      {/* Top Part: Logo */}
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-2 px-2 py-1">
-          {/* Futuristic geometric A Logo resembling screenshot exactly */}
-          <div className="relative flex items-center justify-center w-8 h-8">
-            <svg 
-              className="w-full h-full drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]" 
-              viewBox="0 0 100 100" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
+    <>
+      {/* Mobile backdrop overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          onClick={onClose}
+        />
+      )}
+
+      <aside className={`w-64 flex flex-col justify-between border-r border-[#1e293b]/50 bg-[#070b19] h-screen fixed left-0 top-0 z-50 p-5 font-sans overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden transition-transform duration-300 ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } lg:translate-x-0 lg:flex`}>
+        {/* Top Part: Logo */}
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center justify-between px-2 py-1">
+            <div className="flex items-center gap-2">
+              {/* Futuristic geometric A Logo resembling screenshot exactly */}
+              <div className="relative flex items-center justify-center w-8 h-8">
+                <svg 
+                  className="w-full h-full drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]" 
+                  viewBox="0 0 100 100" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#3b82f6" />
+                      <stop offset="50%" stopColor="#8b5cf6" />
+                      <stop offset="100%" stopColor="#ec4899" />
+                    </linearGradient>
+                  </defs>
+                  <path 
+                    d="M50 10 L15 85 L35 85 L50 45 L65 85 L85 85 Z" 
+                    fill="url(#logoGrad)" 
+                  />
+                  <path 
+                    d="M50 45 L35 85 L65 85 Z" 
+                    fill="#070b19" 
+                    opacity="0.8"
+                  />
+                  <path 
+                    d="M50 25 L28 75 L38 75 L50 48 L62 75 L72 75 Z" 
+                    fill="#ffffff" 
+                  />
+                </svg>
+              </div>
+              <span className="text-xl font-bold font-sans tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent">
+                AICapital
+              </span>
+            </div>
+
+            {/* Close button on mobile/tablet screens */}
+            <button
+              onClick={onClose}
+              className="lg:hidden p-1.5 rounded-xl bg-slate-900 border border-[#1e293b] text-slate-400 hover:text-white transition-colors cursor-pointer"
+              aria-label="Close menu"
             >
-              <defs>
-                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#3b82f6" />
-                  <stop offset="50%" stopColor="#8b5cf6" />
-                  <stop offset="100%" stopColor="#ec4899" />
-                </linearGradient>
-              </defs>
-              <path 
-                d="M50 10 L15 85 L35 85 L50 45 L65 85 L85 85 Z" 
-                fill="url(#logoGrad)" 
-              />
-              <path 
-                d="M50 45 L35 85 L65 85 Z" 
-                fill="#070b19" 
-                opacity="0.8"
-              />
-              <path 
-                d="M50 25 L28 75 L38 75 L50 48 L62 75 L72 75 Z" 
-                fill="#ffffff" 
-              />
-            </svg>
+              <X className="w-4 h-4" />
+            </button>
           </div>
-          <span className="text-xl font-bold font-sans tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent">
-            AICapital
-          </span>
-        </div>
 
         {/* Navigation Items */}
         <nav className="flex flex-col gap-1">
@@ -175,5 +200,6 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
         </div>
       </div>
     </aside>
+    </>
   );
 }
