@@ -23,9 +23,11 @@ import {
 dotenv.config();
 
 // Active environment parameters
-let blockNumber = 19234567;
-let gasPrice = 25;
-let onlineCountBase = 1248;
+// Simulated block environment — not connected to Ethereum mainnet
+// These values increment/drift dynamically to simulate live chain activity
+let blockNumber = 22487341; // Approximate current Ethereum mainnet block (June 2026)
+let gasPrice = 12; // Approximate current base fee in Gwei (June 2026, post-Dencun)
+let onlineCountBase = 1248; // Simulated concurrent validator sessions
 
 // RPC Provider configuration
 const RPC_URL = process.env.RPC_URL || "https://cloudflare-eth.com";
@@ -64,7 +66,7 @@ async function readWalletStatusOnchain(wallet: string) {
         simulatedAIC: Math.floor(balanceEth * 180 + 3500)
       };
     } catch (e) {
-      // Return beautiful high-integrity mock data if fetch is restricted or fails
+      // RPC fetch failed or wallet is a mock address — return deterministic simulated data
     }
   }
   

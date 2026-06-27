@@ -498,16 +498,39 @@ export default function App() {
       <div className="absolute top-[-10%] left-[10%] w-[500px] h-[500px] rounded-full bg-blue-500/[0.04] blur-[140px] pointer-events-none"></div>
       <div className="absolute bottom-[20%] right-[5%] w-[400px] h-[400px] rounded-full bg-purple-500/[0.03] blur-[120px] pointer-events-none"></div>
 
-      {/* 1. Left Sidebar Navigation */}
-      <Sidebar 
-        activeTab={activeTab} 
-        setActiveTab={(tab) => {
-          setActiveTab(tab);
-          setSidebarOpen(false); // Auto close menu on item click for compact screens
-        }} 
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
+      {/* Desktop sidebar — always visible on lg+ */}
+      <div className="hidden lg:block">
+        <Sidebar 
+          activeTab={activeTab} 
+          setActiveTab={(tab) => {
+            setActiveTab(tab);
+            setSidebarOpen(false); // Auto close menu on item click for compact screens
+          }} 
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
+        />
+      </div>
+
+      {/* Mobile/tablet sidebar — drawer overlay */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setSidebarOpen(false)}
+          />
+          <div className="absolute left-0 top-0 h-full w-64 bg-[#05070f] border-r border-[#1e293b] z-50 overflow-y-auto">
+            <Sidebar 
+              activeTab={activeTab} 
+              setActiveTab={(tab) => {
+                setActiveTab(tab);
+                setSidebarOpen(false); // Auto close menu on item click for compact screens
+              }} 
+              isOpen={sidebarOpen}
+              onClose={() => setSidebarOpen(false)}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Main Panel Content (shifted right offset of sidebar width 64 only on lg desktop screens) */}
       <div className="flex-1 lg:ml-64 flex flex-col min-h-screen max-w-full overflow-x-hidden">
@@ -527,7 +550,7 @@ export default function App() {
           metaMaskConnected={metaMaskConnected}
           onConnectMetaMask={handleConnectMetaMask}
           metaMaskEthBalance={metaMaskEthBalance}
-          onMenuClick={() => setSidebarOpen(true)}
+          onMenuToggle={() => setSidebarOpen(true)}
         />
 
         {/* 3. Sub-views Layout according to Left Tab */}

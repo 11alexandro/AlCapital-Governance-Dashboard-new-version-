@@ -17,6 +17,7 @@ interface TopbarProps {
   onConnectMetaMask?: () => void;
   metaMaskEthBalance?: string;
   onMenuClick?: () => void;
+  onMenuToggle: () => void;
 }
 
 export default function Topbar({
@@ -28,7 +29,8 @@ export default function Topbar({
   metaMaskConnected = false,
   onConnectMetaMask,
   metaMaskEthBalance = "0.000",
-  onMenuClick
+  onMenuClick,
+  onMenuToggle
 }: TopbarProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -53,15 +55,13 @@ export default function Topbar({
 
       {/* Title & Subtitle + Menu Button */}
       <div className="flex items-center gap-3 animate-fadeIn min-w-0">
-        {onMenuClick && (
-          <button
-            onClick={onMenuClick}
-            className="lg:hidden p-2 rounded-xl bg-[#090d1a] border border-[#1e293b] text-slate-300 hover:text-white hover:bg-slate-800/40 cursor-pointer active:scale-95 transition-all shrink-0"
-            aria-label="Open menu"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
-        )}
+        <button
+          onClick={onMenuToggle}
+          className="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors mr-2"
+          aria-label="Open menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
 
         {/* Brand Logo Icon */}
         <div className="relative flex items-center justify-center w-7 h-7 sm:w-8 h-8 shrink-0">

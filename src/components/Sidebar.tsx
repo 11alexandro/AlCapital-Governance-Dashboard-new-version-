@@ -50,7 +50,7 @@ export default function Sidebar({ activeTab, setActiveTab, isOpen = false, onClo
         />
       )}
 
-      <aside className={`w-64 flex flex-col justify-between border-r border-[#1e293b]/50 bg-[#070b19] h-screen fixed left-0 top-0 z-50 p-5 font-sans overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden transition-transform duration-300 ${
+      <aside className={`w-64 flex flex-col justify-between border-r border-[#1e293b]/50 bg-[#070b19] h-full lg:h-screen relative lg:fixed left-0 top-0 z-50 p-5 font-sans overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } lg:translate-x-0 lg:flex`}>
         {/* Top Part: Logo */}

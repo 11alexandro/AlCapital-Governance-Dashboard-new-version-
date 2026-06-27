@@ -181,7 +181,7 @@ export default function ProposalDetails({
   }, [chartHistory]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start w-full">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start w-full max-w-full overflow-x-hidden">
       {/* A. Left Core Details Column */}
       <div className="lg:col-span-7 flex flex-col gap-6 w-full">
         {/* 1. Main Proposal Content Card */}
