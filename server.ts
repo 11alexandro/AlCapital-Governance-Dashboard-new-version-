@@ -652,7 +652,10 @@ async function startServer() {
   // Client SPA static compilation or development mounting
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: false, // Disable HMR WebSocket — not supported in middleware mode / sandboxed environments
+      },
       appType: "spa",
     });
     app.use(vite.middlewares);

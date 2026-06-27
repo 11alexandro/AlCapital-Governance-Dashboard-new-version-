@@ -12,10 +12,12 @@ export default defineConfig(() => {
       },
     },
     server: {
-      // HMR toggles via the DISABLE_HMR environment variable.
+      // HMR is disabled in middleware mode (Express integration) and sandboxed preview environments.
+      // Set DISABLE_HMR=false in your local .env to enable HMR during standalone Vite dev server usage.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // File watching is deactivated in specific environments to conserve CPU during code updates.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      // Suppress WebSocket connection errors in environments that block WebSocket upgrades
+      ws: process.env.DISABLE_HMR === 'true' ? (false as const) : undefined,
     },
   };
 });

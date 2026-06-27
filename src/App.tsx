@@ -193,6 +193,9 @@ export default function App() {
   const fetchMetrics = async () => {
     try {
       const res = await fetch("/api/metrics");
+      if (!res.ok || !res.headers.get("content-type")?.includes("application/json")) {
+        throw new Error(`Server returned status ${res.status} or non-JSON content`);
+      }
       const data = await res.json();
       setMetrics(data);
     } catch (e) {
@@ -269,6 +272,9 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ walletAddress: address })
       });
+      if (!res.ok || !res.headers.get("content-type")?.includes("application/json")) {
+        throw new Error(`Server returned status ${res.status} or non-JSON content`);
+      }
       const info = await res.json();
       if (info.success) {
         setMetaMaskAddress(info.user.walletAddress);
@@ -394,6 +400,9 @@ export default function App() {
         })
       });
 
+      if (!res.ok || !res.headers.get("content-type")?.includes("application/json")) {
+        throw new Error(`Server returned status ${res.status} or non-JSON content`);
+      }
       const data = await res.json();
       if (data.success) {
         alert(`🗳️ Vote registered successfully!\n\nProof hash on-chain simulation index:\n${data.txHash}`);
@@ -431,6 +440,9 @@ export default function App() {
         })
       });
 
+      if (!res.ok || !res.headers.get("content-type")?.includes("application/json")) {
+        throw new Error(`Server returned status ${res.status} or non-JSON content`);
+      }
       const data = await res.json();
       if (data.success) {
         setProposalModalOpen(false);
@@ -457,6 +469,9 @@ export default function App() {
       const res = await fetch(`/api/proposals/${id}/close`, {
         method: "POST"
       });
+      if (!res.ok || !res.headers.get("content-type")?.includes("application/json")) {
+        throw new Error(`Server returned status ${res.status} or non-JSON content`);
+      }
       const data = await res.json();
       if (data.success) {
         alert(`🔒 Proposal #${id} has been closed. Status finalized: ${data.status}`);
@@ -473,6 +488,9 @@ export default function App() {
       const res = await fetch(`/api/proposals/${id}/archive`, {
         method: "POST"
       });
+      if (!res.ok || !res.headers.get("content-type")?.includes("application/json")) {
+        throw new Error(`Server returned status ${res.status} or non-JSON content`);
+      }
       const data = await res.json();
       if (data.success) {
         alert(`📁 Proposal #${id} has been archived successfully.`);
