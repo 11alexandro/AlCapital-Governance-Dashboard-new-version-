@@ -7,7 +7,7 @@
 [![MongoDB](https://img.shields.io/badge/Database-MongoDB-green?logo=mongodb)](https://www.mongodb.com)
 [![Express](https://img.shields.io/badge/Backend-Express_4-gray?logo=express)](https://expressjs.com)
 
-A high-performance, real-time decentralized autonomous organization (DAO) governance console and proposal tracker. This platform enables Web3 communities to draft proposals, cast cryptographic weighted simulate votes, track vote distributions via interactive charts, review real-time activity feeds, and monitor treasury cash reserves within a unified, premium dark-mode dashboard interface.
+A full-stack real-time DAO governance dashboard and proposal tracker. Built for Web3 communities to draft proposals, cast weighted votes, track vote distributions via live Chart.js charts, monitor treasury reserves, and follow governance activity — all synchronized instantly across browser sessions via Socket.IO WebSockets.
 
 ---
 
@@ -81,13 +81,13 @@ graph TD
 
 ## 🧪 What I Learned
 
-Building this application provided deeply valuable insights into full-stack architecture, Web3 design paradigms, and state synchronization:
+Here's what building this taught me in practice:
 
 *   **Real-Time Bi-Directional Synchronization (Socket.IO):** Implementing synchronization logic spanning multiple browser contexts. I learned how to manage websocket connections, structure real-time payloads, room events, and synchronize local states across multiple user sessions using a central authority server.
 *   **MongoDB Schema Design & Robust Database Mappings:** Designed data structures utilizing **Mongoose ODM** to model one-to-many relationships safely (e.g. tracking multiple unique votes cast per validator across multiple distinct proposals). I implemented a robust, seamless local JSON fallback layer to handle DB service disruptions without breaking application usability.
 *   **Web3 Governance Concepts:** Gained deep analytical understanding of on-chain governance parameters, including voting power (VP) weight distribution metrics, absolute quorum margins, minimum proposal thresholds, timelocks, and multi-sig finalizations.
 *   **Advanced React State Management:** Developed a scalable reactive system using React Hooks (`useMemo`, `useEffect`, `useRef`) paired with custom event communication pipelines (`BroadcastChannel` API) to ensure local frames are aligned instantly when profile sessions shift.
-*   **High-Yield Dashboard Architecture:** Designed a responsive center-weighted 3-column dashboard that organizes highly complex datasets (aggregated statistics, interactive charting analytics, navigation selectors, and scrolling logger components) into a clean, low-fatigue bento interface.
+*   **Dashboard Layout for Data-Heavy UIs:** Designed a 3-column layout that keeps proposals, live vote charts, and activity feeds visible at the same time without the interface feeling cluttered. The challenge was deciding what to show at a glance versus what lives inside a detail panel — the same tradeoff you deal with on any real trading or analytics product.
 
 ---
 
@@ -98,7 +98,7 @@ Follow these step-by-step instructions to boot the application on your local mac
 ### 1. Clone & Configuration
 Clone this repository to your workspace and navigate inside:
 ```bash
-git clone https://github.com/your-username/alcapital-governance-dashboard.git
+git clone https://github.com/11alexandro/alcapital-governance-dashboard.git
 cd alcapital-governance-dashboard
 ```
 
