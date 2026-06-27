@@ -47,7 +47,7 @@ export default function Topbar({
   };
 
   return (
-    <header className="flex flex-col md:flex-row md:items-center justify-between border-b border-[#1e293b]/50 bg-gradient-to-b from-[#050711]/90 to-[#03060c]/90 backdrop-blur-md h-auto md:h-20 py-4 md:py-0 px-4 sm:px-8 gap-3 md:gap-4 sticky top-0 z-30 font-sans relative">
+    <header className="flex flex-col lg:flex-row lg:items-center justify-between border-b border-[#1e293b]/50 bg-gradient-to-b from-[#050711]/90 to-[#03060c]/90 backdrop-blur-md h-auto lg:h-20 py-4 lg:py-0 px-4 sm:px-8 gap-3 lg:gap-4 sticky top-0 z-30 font-sans relative">
       {/* Subtle border bottom gradient line */}
       <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-blue-500/10 via-indigo-500/25 to-purple-500/10" />
 
@@ -106,7 +106,7 @@ export default function Topbar({
       </div>
 
       {/* Right Controls: Live status & Wallet Selector */}
-      <div className="flex flex-wrap items-center gap-2 sm:gap-3 justify-between md:justify-end w-full md:w-auto shrink-0">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3 justify-between lg:justify-end w-full lg:w-auto shrink-0">
         {/* Live Indicator */}
         <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-xl bg-[#09151c]/60 hover:bg-[#0d1e29]/75 border border-emerald-500/25 hover:border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.03)] shrink-0 select-none transition-all duration-300">
           <span className="relative flex h-1.5 w-1.5 shrink-0">
@@ -137,8 +137,8 @@ export default function Topbar({
             <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-500 shrink-0" />
             <span className="hidden sm:inline">🦊 {getFormatWallet(metaMaskAddress || "")}</span>
             <span className="sm:hidden">🦊 {getFormatWallet(metaMaskAddress || "").slice(0, 4)}..</span>
-            <span className="text-slate-700 hidden md:inline">|</span>
-            <span className="text-slate-200 font-bold hidden md:inline">{metaMaskEthBalance} ETH</span>
+            <span className="text-slate-700 hidden lg:inline">|</span>
+            <span className="text-slate-200 font-bold hidden lg:inline">{metaMaskEthBalance} ETH</span>
           </div>
         )}
 
